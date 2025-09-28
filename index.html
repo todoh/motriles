@@ -17,11 +17,27 @@
     <!-- Header y Navegación -->
     <header class="bg-white shadow-md sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-blue-600">MOTRIL AL DÍA</a>
-            <div class="hidden md:flex space-x-6">
+            <a href="index.html" class="text-2xl font-bold text-blue-600 flex-shrink-0">MOTRIL AL DÍA</a>
+            
+            <!-- Center: Search Bar -->
+            <div class="hidden md:flex flex-grow justify-center px-10">
+                <div class="relative w-full max-w-md">
+                    <input type="text" id="search-input" class="w-full bg-gray-100 border border-transparent rounded-full py-2 pl-4 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Buscar noticias...">
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                         <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hidden md:flex space-x-6 items-center flex-shrink-0">
                 <a href="index.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Inicio</a>
-                <a href="#ultimas-noticias-seccion" class="text-gray-600 hover:text-blue-600 transition duration-300">Noticias</a>
-                <a href="#reportajes-seccion" class="text-gray-600 hover:text-blue-600 transition duration-300">Reportajes</a>
+                <a href="#" id="nav-noticias" class="text-gray-600 hover:text-blue-600 transition duration-300">Noticias</a>
+                <a href="#" id="nav-reportajes" class="text-gray-600 hover:text-blue-600 transition duration-300">Reportajes</a>
+                <a href="#" id="nav-cultura" class="text-gray-600 hover:text-blue-600 transition duration-300">Cultura</a>
+                <a href="#" id="nav-gastronomia" class="text-gray-600 hover:text-blue-600 transition duration-300">Gastronomía</a>
+                <a href="#" id="nav-entrevistas" class="text-gray-600 hover:text-blue-600 transition duration-300">Entrevistas</a>
             </div>
             <button class="md:hidden flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
@@ -31,25 +47,37 @@
 
     <!-- Contenido Principal -->
     <main class="container mx-auto px-6 py-8">
+        
+        <div id="loading-message" class="text-center py-10">
+            <p class="text-lg text-gray-600">Cargando noticias desde Firebase...</p>
+        </div>
 
-        <!-- Noticia Destacada (se cargará aquí) -->
-        <section id="noticia-destacada" class="mb-12"></section>
+        <!-- Contenedor para la vista de INICIO -->
+        <div id="inicio-content" class="hidden">
+            <!-- Noticia Destacada (se cargará aquí) -->
+            <section id="noticia-destacada" class="mb-12"></section>
 
-        <!-- Últimas Noticias (se cargarán aquí) -->
-        <section id="ultimas-noticias-seccion" class="mb-12">
-            <h2 class="text-2xl font-bold mb-6 border-l-4 border-blue-600 pl-4">Últimas Noticias</h2>
-            <div id="ultimas-noticias-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Las noticias se insertarán aquí con JS -->
-            </div>
-        </section>
+            <!-- Últimas Noticias (se cargarán aquí) -->
+            <section id="ultimas-noticias-seccion" class="mb-12">
+                <h2 class="text-2xl font-bold mb-6 border-l-4 border-blue-600 pl-4">Últimas Noticias</h2>
+                <div id="ultimas-noticias-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Las noticias se insertarán aquí con JS -->
+                </div>
+            </section>
 
-        <!-- Reportajes (se cargarán aquí) -->
-        <section id="reportajes-seccion">
-            <h2 class="text-2xl font-bold mb-6 border-l-4 border-blue-600 pl-4">Reportajes en Profundidad</h2>
-            <div id="reportajes-lista" class="space-y-6">
-                <!-- Los reportajes se insertarán aquí con JS -->
-            </div>
-        </section>
+            <!-- Reportajes (se cargarán aquí) -->
+            <section id="reportajes-seccion">
+                <h2 class="text-2xl font-bold mb-6 border-l-4 border-blue-600 pl-4">Reportajes en Profundidad</h2>
+                <div id="reportajes-lista" class="space-y-6">
+                    <!-- Los reportajes se insertarán aquí con JS -->
+                </div>
+            </section>
+        </div>
+
+        <!-- Contenedor para la vista de CATEGORÍAS Y BÚSQUEDA -->
+        <div id="categoria-content" class="hidden">
+            <!-- El contenido de la categoría o búsqueda se insertará aquí -->
+        </div>
 
     </main>
 
@@ -60,27 +88,211 @@
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            fetch('noticias.json')
-                .then(response => response.json())
-                .then(data => {
-                    // Ordenar noticias por fecha, de más nueva a más antigua
-                    const noticias = data.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
-                    
-                    const noticiaDestacada = noticias.shift(); // Saca la primera (la más nueva)
-                    const reportajes = noticias.filter(n => n.categoria === 'REPORTAJE');
-                    const ultimasNoticias = noticias.filter(n => n.categoria !== 'REPORTAJE').slice(0, 3); // Coge las 3 siguientes
+    <script type="module">
+        // Importar funciones de Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
-                    renderizarDestacada(noticiaDestacada);
-                    renderizarUltimasNoticias(ultimasNoticias);
-                    renderizarReportajes(reportajes);
-                })
-                .catch(error => {
-                    console.error('Error al cargar las noticias:', error);
-                    document.querySelector('main').innerHTML = `<p class="text-center text-red-500">No se pudieron cargar las noticias. Inténtelo de nuevo más tarde.</p>`;
-                });
+        // Configuración de Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyAfK_AOq-Pc2bzgXEzIEZ1ESWvnhMJUvwI",
+            authDomain: "enraya-51670.firebaseapp.com",
+            databaseURL: "https://enraya-51670-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "enraya-51670",
+            storageBucket: "enraya-51670.firebasestorage.app",
+            messagingSenderId: "103343380727",
+            appId: "1:103343380727:web:b2fa02aee03c9506915bf2",
+            measurementId: "G-2G31LLJY1T"
+        };
+
+        // Inicializar Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const newsRef = ref(db, 'noticias');
+        
+        let todasLasNoticias = []; // Variable global para guardar los datos
+
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Listener de Firebase para obtener datos en tiempo real
+            onValue(newsRef, (snapshot) => {
+                const data = snapshot.val();
+                document.getElementById('loading-message').classList.add('hidden');
+                
+                if (data) {
+                    const dataArray = Object.values(data);
+                    // Filtrar solo las noticias publicadas y luego ordenar
+                    const noticiasPublicadas = dataArray.filter(n => n.estado === 'publicado');
+                    todasLasNoticias = noticiasPublicadas.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+                    
+                    const params = new URLSearchParams(window.location.search);
+                    const categoriaParam = params.get('categoria');
+                    const busquedaParam = params.get('busqueda');
+
+                    if (categoriaParam) {
+                        renderizarCategoria(categoriaParam);
+                    } else if (busquedaParam) {
+                        document.getElementById('search-input').value = busquedaParam;
+                        renderizarBusqueda(busquedaParam);
+                    } else {
+                        renderizarInicio();
+                    }
+                } else {
+                    document.querySelector('main').innerHTML = `<p class="text-center text-red-500">No se encontraron noticias. La base de datos puede estar vacía.</p>`;
+                }
+            }, (error) => {
+                 console.error('Error al cargar las noticias desde Firebase:', error);
+                 document.querySelector('main').innerHTML = `<p class="text-center text-red-500">No se pudieron cargar las noticias. Inténtelo de nuevo más tarde.</p>`;
+            });
+            
+            // Listeners para los botones de navegación
+            document.getElementById('nav-noticias').addEventListener('click', (e) => {
+                e.preventDefault();
+                renderizarCategoria('noticias');
+            });
+
+            document.getElementById('nav-reportajes').addEventListener('click', (e) => {
+                e.preventDefault();
+                renderizarCategoria('reportajes');
+            });
+            
+            document.getElementById('nav-cultura').addEventListener('click', (e) => {
+                e.preventDefault();
+                renderizarCategoria('CULTURA');
+            });
+
+            document.getElementById('nav-gastronomia').addEventListener('click', (e) => {
+                e.preventDefault();
+                renderizarCategoria('GASTRONOMIA');
+            });
+
+            document.getElementById('nav-entrevistas').addEventListener('click', (e) => {
+                e.preventDefault();
+                renderizarCategoria('ENTREVISTA');
+            });
+            
+            // Listener for search
+            const searchInput = document.getElementById('search-input');
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const searchTerm = searchInput.value.trim();
+                    if (searchTerm) {
+                        renderizarBusqueda(searchTerm);
+                    }
+                }
+            });
         });
+
+        function renderizarInicio() {
+            document.getElementById('inicio-content').classList.remove('hidden');
+            document.getElementById('categoria-content').classList.add('hidden');
+            
+            const noticiasParaInicio = [...todasLasNoticias];
+            
+            const noticiaDestacada = noticiasParaInicio.shift(); 
+            const reportajes = noticiasParaInicio.filter(n => n.categoria === 'REPORTAJE').slice(0, 2);
+            const ultimasNoticias = noticiasParaInicio.filter(n => n.categoria !== 'REPORTAJE').slice(0, 6);
+
+            renderizarDestacada(noticiaDestacada);
+            renderizarUltimasNoticias(ultimasNoticias);
+            renderizarReportajes(reportajes);
+        }
+        
+        function renderizarCategoria(tipo) {
+            document.getElementById('inicio-content').classList.add('hidden');
+            const container = document.getElementById('categoria-content');
+            container.classList.remove('hidden');
+
+            let titulo = '';
+            let articulosFiltrados = [];
+            const tipoLower = tipo.toLowerCase();
+
+            if (tipoLower === 'noticias') {
+                titulo = 'Todas las Noticias';
+                articulosFiltrados = todasLasNoticias.filter(n => n.categoria !== 'REPORTAJE' && n.categoria !== 'ENTREVISTA');
+            } else if (tipoLower === 'reportajes') {
+                titulo = 'Todos los Reportajes';
+                articulosFiltrados = todasLasNoticias.filter(n => n.categoria === 'REPORTAJE');
+            } else {
+                titulo = tipo.charAt(0).toUpperCase() + tipo.slice(1).toLowerCase();
+                articulosFiltrados = todasLasNoticias.filter(n => n.categoria.toUpperCase() === tipo.toUpperCase());
+            }
+            
+            const articulosHtml = articulosFiltrados.length > 0
+                ? articulosFiltrados.map(articulo => `
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden md:flex">
+                        <div class="md:w-1/3">
+                            <a href="articulo.html?id=${articulo.id}">
+                               <img class="h-full w-full object-cover" src="${articulo.imagen}" alt="${articulo.titulo}">
+                            </a>
+                        </div>
+                        <div class="p-6 md:w-2/3 flex flex-col">
+                            <span class="text-xs font-semibold text-gray-500">${articulo.categoria}</span>
+                            <h3 class="font-bold text-2xl mt-1 mb-2 flex-grow">
+                                 <a href="articulo.html?id=${articulo.id}" class="hover:text-blue-600">${articulo.titulo}</a>
+                            </h3>
+                            <p class="text-gray-600 leading-relaxed mb-4">${articulo.resumen}</p>
+                            <a href="articulo.html?id=${articulo.id}" class="text-blue-600 font-semibold hover:underline mt-auto self-start">Leer más &rarr;</a>
+                        </div>
+                    </div>
+                `).join('')
+                : `<p class="text-center text-gray-600 py-10">No hay artículos en la categoría "<strong>${titulo}</strong>".</p>`;
+
+
+            container.innerHTML = `
+                <section>
+                    <h2 class="text-2xl font-bold mb-6 border-l-4 border-blue-600 pl-4">${titulo}</h2>
+                    <div class="space-y-6">
+                        ${articulosHtml}
+                    </div>
+                </section>
+            `;
+        }
+
+        function renderizarBusqueda(termino) {
+            document.getElementById('inicio-content').classList.add('hidden');
+            const container = document.getElementById('categoria-content');
+            container.classList.remove('hidden');
+
+            const terminoLower = termino.toLowerCase();
+            const articulosFiltrados = todasLasNoticias.filter(n => 
+                n.titulo.toLowerCase().includes(terminoLower) || 
+                n.resumen.toLowerCase().includes(terminoLower)
+            );
+            
+            let articulosHtml;
+            if (articulosFiltrados.length > 0) {
+                 articulosHtml = articulosFiltrados.map(articulo => `
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden md:flex">
+                    <div class="md:w-1/3">
+                        <a href="articulo.html?id=${articulo.id}">
+                           <img class="h-full w-full object-cover" src="${articulo.imagen}" alt="${articulo.titulo}">
+                        </a>
+                    </div>
+                    <div class="p-6 md:w-2/3 flex flex-col">
+                        <span class="text-xs font-semibold text-gray-500">${articulo.categoria}</span>
+                        <h3 class="font-bold text-2xl mt-1 mb-2 flex-grow">
+                             <a href="articulo.html?id=${articulo.id}" class="hover:text-blue-600">${articulo.titulo}</a>
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">${articulo.resumen}</p>
+                        <a href="articulo.html?id=${articulo.id}" class="text-blue-600 font-semibold hover:underline mt-auto self-start">Leer más &rarr;</a>
+                    </div>
+                </div>
+                `).join('');
+            } else {
+                articulosHtml = `<p class="text-center text-gray-600 py-10">No se encontraron resultados para "<strong>${termino}</strong>".</p>`;
+            }
+
+            container.innerHTML = `
+                <section>
+                    <h2 class="text-2xl font-bold mb-6 border-l-4 border-blue-600 pl-4">Resultados de búsqueda: "${termino}"</h2>
+                    <div class="space-y-6">
+                        ${articulosHtml}
+                    </div>
+                </section>
+            `;
+        }
 
         function renderizarDestacada(noticia) {
             const container = document.getElementById('noticia-destacada');
@@ -88,8 +300,7 @@
             container.innerHTML = `
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden md:flex">
                     <div class="md:w-1/2">
-                        <img class="h-64 w-full object-cover md:h-full" src="${noticia.imagen}" alt="${noticia.titulo}">
-                    </div>
+<img class="h-64 w-full object-cover md:h-96" src="${noticia.imagen}" alt="${noticia.titulo}">                    </div>
                     <div class="p-6 md:w-1/2 flex flex-col justify-center">
                         <span class="text-sm font-semibold text-blue-500 bg-blue-100 py-1 px-3 rounded-full self-start mb-2">${noticia.categoria}</span>
                         <h1 class="text-3xl font-bold mb-4">${noticia.titulo}</h1>
@@ -139,4 +350,3 @@
     </script>
 </body>
 </html>
-
