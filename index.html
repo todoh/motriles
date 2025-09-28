@@ -40,6 +40,8 @@
                 <a href="#" id="nav-cultura" class="text-gray-600 hover:text-blue-600 transition duration-300">Cultura</a>
                 <a href="#" id="nav-gastronomia" class="text-gray-600 hover:text-blue-600 transition duration-300">Gastronomía</a>
                 <a href="#" id="nav-entrevistas" class="text-gray-600 hover:text-blue-600 transition duration-300">Entrevistas</a>
+                <a href="#" id="nav-deporte" class="text-gray-600 hover:text-blue-600 transition duration-300">Deporte</a>
+                <a href="#" id="nav-historia" class="text-gray-600 hover:text-blue-600 transition duration-300">Historia</a>
             </div>
             
             <!-- Botón del Menú Móvil (Hamburguesa) -->
@@ -65,6 +67,8 @@
                 <a href="#" id="mobile-nav-cultura" class="text-gray-700 hover:bg-blue-50 rounded-md px-3 py-2">Cultura</a>
                 <a href="#" id="mobile-nav-gastronomia" class="text-gray-700 hover:bg-blue-50 rounded-md px-3 py-2">Gastronomía</a>
                 <a href="#" id="mobile-nav-entrevistas" class="text-gray-700 hover:bg-blue-50 rounded-md px-3 py-2">Entrevistas</a>
+                <a href="#" id="mobile-nav-deporte" class="text-gray-700 hover:bg-blue-50 rounded-md px-3 py-2">Deporte</a>
+                <a href="#" id="mobile-nav-historia" class="text-gray-700 hover:bg-blue-50 rounded-md px-3 py-2">Historia</a>
             </div>
         </div>
     </header>
@@ -165,6 +169,8 @@
             document.getElementById('mobile-nav-cultura').addEventListener('click', (e) => { e.preventDefault(); mobileMenu.classList.add('hidden'); renderizarCategoria('CULTURA'); });
             document.getElementById('mobile-nav-gastronomia').addEventListener('click', (e) => { e.preventDefault(); mobileMenu.classList.add('hidden'); renderizarCategoria('GASTRONOMIA'); });
             document.getElementById('mobile-nav-entrevistas').addEventListener('click', (e) => { e.preventDefault(); mobileMenu.classList.add('hidden'); renderizarCategoria('ENTREVISTA'); });
+            document.getElementById('mobile-nav-deporte').addEventListener('click', (e) => { e.preventDefault(); mobileMenu.classList.add('hidden'); renderizarCategoria('DEPORTE'); });
+            document.getElementById('mobile-nav-historia').addEventListener('click', (e) => { e.preventDefault(); mobileMenu.classList.add('hidden'); renderizarCategoria('HISTORIA'); });
             // --- FIN DEL CÓDIGO NUEVO ---
 
             // Listener de Firebase para obtener datos en tiempo real
@@ -203,6 +209,8 @@
             document.getElementById('nav-cultura').addEventListener('click', (e) => { e.preventDefault(); renderizarCategoria('CULTURA'); });
             document.getElementById('nav-gastronomia').addEventListener('click', (e) => { e.preventDefault(); renderizarCategoria('GASTRONOMIA'); });
             document.getElementById('nav-entrevistas').addEventListener('click', (e) => { e.preventDefault(); renderizarCategoria('ENTREVISTA'); });
+            document.getElementById('nav-deporte').addEventListener('click', (e) => { e.preventDefault(); renderizarCategoria('DEPORTE'); });
+            document.getElementById('nav-historia').addEventListener('click', (e) => { e.preventDefault(); renderizarCategoria('HISTORIA'); });
             
             // Listener for search (Desktop)
             const searchInput = document.getElementById('search-input');
@@ -383,3 +391,4 @@
     </script>
 </body>
 </html>
+
