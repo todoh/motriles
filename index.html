@@ -16,10 +16,11 @@
 
     <!-- Header y Navegación -->
     <header class="bg-white shadow-md sticky top-0 z-50">
+        <!-- Barra de navegación principal -->
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html" class="text-2xl font-bold text-blue-600 flex-shrink-0">MOTRIL AL DÍA</a>
             
-            <!-- Center: Search Bar -->
+            <!-- Center: Search Bar (Visible en Desktop) -->
             <div class="hidden md:flex flex-grow justify-center px-10">
                 <div class="relative w-full max-w-md">
                     <input type="text" id="search-input" class="w-full bg-gray-100 border border-transparent rounded-full py-2 pl-4 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Buscar noticias...">
@@ -31,6 +32,7 @@
                 </div>
             </div>
 
+            <!-- Links de Navegación (Visible en Desktop) -->
             <div class="hidden md:flex space-x-6 items-center flex-shrink-0">
                 <a href="index.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Inicio</a>
                 <a href="#" id="nav-noticias" class="text-gray-600 hover:text-blue-600 transition duration-300">Noticias</a>
@@ -39,10 +41,32 @@
                 <a href="#" id="nav-gastronomia" class="text-gray-600 hover:text-blue-600 transition duration-300">Gastronomía</a>
                 <a href="#" id="nav-entrevistas" class="text-gray-600 hover:text-blue-600 transition duration-300">Entrevistas</a>
             </div>
-            <button class="md:hidden flex items-center">
+            
+            <!-- Botón del Menú Móvil (Hamburguesa) -->
+            <button id="mobile-menu-button" class="md:hidden flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
             </button>
         </nav>
+
+        <!-- Menú Desplegable (Móvil) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white px-6 pb-4 shadow-md">
+            <!-- Buscador Móvil -->
+            <div class="relative mb-4">
+                <input type="text" id="mobile-search-input" class="w-full bg-gray-100 border border-transparent rounded-full py-2 pl-4 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Buscar noticias...">
+                 <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                    <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" /></svg>
+                </div>
+            </div>
+            <!-- Enlaces Móvil -->
+            <div class="flex flex-col space-y-3">
+                <a href="index.html" class="text-gray-700 hover:bg-blue-50 rounded-md px-3 py-2">Inicio</a>
+                <a href="#" id="mobile-nav-noticias" class="text-gray-700 hover:bg-blue-50 rounded-md px-3 py-2">Noticias</a>
+                <a href="#" id="mobile-nav-reportajes" class="text-gray-700 hover:bg-blue-50 rounded-md px-3 py-2">Reportajes</a>
+                <a href="#" id="mobile-nav-cultura" class="text-gray-700 hover:bg-blue-50 rounded-md px-3 py-2">Cultura</a>
+                <a href="#" id="mobile-nav-gastronomia" class="text-gray-700 hover:bg-blue-50 rounded-md px-3 py-2">Gastronomía</a>
+                <a href="#" id="mobile-nav-entrevistas" class="text-gray-700 hover:bg-blue-50 rounded-md px-3 py-2">Entrevistas</a>
+            </div>
+        </div>
     </header>
 
     <!-- Contenido Principal -->
@@ -113,7 +137,36 @@
         let todasLasNoticias = []; // Variable global para guardar los datos
 
         document.addEventListener('DOMContentLoaded', () => {
+
+            // --- CÓDIGO NUEVO PARA EL MENÚ MÓVIL ---
+            const menuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
             
+            menuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Sincronizar búsqueda móvil con la principal
+            const mobileSearchInput = document.getElementById('mobile-search-input');
+            mobileSearchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const searchTerm = mobileSearchInput.value.trim();
+                    if (searchTerm) {
+                        mobileMenu.classList.add('hidden'); // Opcional: cierra el menú al buscar
+                        renderizarBusqueda(searchTerm);
+                    }
+                }
+            });
+
+            // Replicar listeners de navegación para los enlaces móviles
+            document.getElementById('mobile-nav-noticias').addEventListener('click', (e) => { e.preventDefault(); mobileMenu.classList.add('hidden'); renderizarCategoria('noticias'); });
+            document.getElementById('mobile-nav-reportajes').addEventListener('click', (e) => { e.preventDefault(); mobileMenu.classList.add('hidden'); renderizarCategoria('reportajes'); });
+            document.getElementById('mobile-nav-cultura').addEventListener('click', (e) => { e.preventDefault(); mobileMenu.classList.add('hidden'); renderizarCategoria('CULTURA'); });
+            document.getElementById('mobile-nav-gastronomia').addEventListener('click', (e) => { e.preventDefault(); mobileMenu.classList.add('hidden'); renderizarCategoria('GASTRONOMIA'); });
+            document.getElementById('mobile-nav-entrevistas').addEventListener('click', (e) => { e.preventDefault(); mobileMenu.classList.add('hidden'); renderizarCategoria('ENTREVISTA'); });
+            // --- FIN DEL CÓDIGO NUEVO ---
+
             // Listener de Firebase para obtener datos en tiempo real
             onValue(newsRef, (snapshot) => {
                 const data = snapshot.val();
@@ -121,7 +174,6 @@
                 
                 if (data) {
                     const dataArray = Object.values(data);
-                    // Filtrar solo las noticias publicadas y luego ordenar
                     const noticiasPublicadas = dataArray.filter(n => n.estado === 'publicado');
                     todasLasNoticias = noticiasPublicadas.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
                     
@@ -145,33 +197,14 @@
                  document.querySelector('main').innerHTML = `<p class="text-center text-red-500">No se pudieron cargar las noticias. Inténtelo de nuevo más tarde.</p>`;
             });
             
-            // Listeners para los botones de navegación
-            document.getElementById('nav-noticias').addEventListener('click', (e) => {
-                e.preventDefault();
-                renderizarCategoria('noticias');
-            });
-
-            document.getElementById('nav-reportajes').addEventListener('click', (e) => {
-                e.preventDefault();
-                renderizarCategoria('reportajes');
-            });
+            // Listeners para los botones de navegación (Desktop)
+            document.getElementById('nav-noticias').addEventListener('click', (e) => { e.preventDefault(); renderizarCategoria('noticias'); });
+            document.getElementById('nav-reportajes').addEventListener('click', (e) => { e.preventDefault(); renderizarCategoria('reportajes'); });
+            document.getElementById('nav-cultura').addEventListener('click', (e) => { e.preventDefault(); renderizarCategoria('CULTURA'); });
+            document.getElementById('nav-gastronomia').addEventListener('click', (e) => { e.preventDefault(); renderizarCategoria('GASTRONOMIA'); });
+            document.getElementById('nav-entrevistas').addEventListener('click', (e) => { e.preventDefault(); renderizarCategoria('ENTREVISTA'); });
             
-            document.getElementById('nav-cultura').addEventListener('click', (e) => {
-                e.preventDefault();
-                renderizarCategoria('CULTURA');
-            });
-
-            document.getElementById('nav-gastronomia').addEventListener('click', (e) => {
-                e.preventDefault();
-                renderizarCategoria('GASTRONOMIA');
-            });
-
-            document.getElementById('nav-entrevistas').addEventListener('click', (e) => {
-                e.preventDefault();
-                renderizarCategoria('ENTREVISTA');
-            });
-            
-            // Listener for search
+            // Listener for search (Desktop)
             const searchInput = document.getElementById('search-input');
             searchInput.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
