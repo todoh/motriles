@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noticias de Motril - Actualidad y Reportajes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header y Navegación -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-blue-600">MOTRIL AL DÍA</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="#" class="text-gray-600 hover:text-blue-600 transition duration-300">Inicio</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600 transition duration-300">Noticias</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600 transition duration-300">Reportajes</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600 transition duration-300">Deportes</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600 transition duration-300">Cultura</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600 transition duration-300">Contacto</a>
+            </div>
+            <!-- Botón de menú para móvil -->
+            <button class="md:hidden flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="container mx-auto px-6 py-8">
+
+        <!-- Noticia Destacada -->
+        <section class="mb-12">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden md:flex">
+                <div class="md:w-1/2">
+                    <img class="h-64 w-full object-cover md:h-full" src="https://placehold.co/800x600/3498db/ffffff?text=Puerto+de+Motril" alt="[Imagen del Puerto de Motril]">
+                </div>
+                <div class="p-6 md:w-1/2 flex flex-col justify-center">
+                    <span class="text-sm font-semibold text-blue-500 bg-blue-100 py-1 px-3 rounded-full self-start mb-2">ECONOMÍA</span>
+                    <h1 class="text-3xl font-bold mb-4">El Puerto de Motril cierra el trimestre con un récord en el tráfico de mercancías</h1>
+                    <p class="text-gray-600 leading-relaxed mb-4">La actividad portuaria se dispara gracias a la exportación de productos hortofrutícolas y la importación de graneles, consolidando su posición estratégica en el Mediterráneo.</p>
+                    <a href="#" class="text-blue-600 font-semibold hover:underline">Leer más &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Últimas Noticias -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 border-l-4 border-blue-600 pl-4">Últimas Noticias</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Noticia 1 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-1 transition-transform duration-300">
+                    <img class="h-48 w-full object-cover" src="https://placehold.co/600x400/2ecc71/ffffff?text=Agricultura" alt="[Imagen de invernaderos en la costa]">
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-green-600">AGRICULTURA</span>
+                        <h3 class="font-bold text-xl my-2">La campaña del pepino holandés arranca con optimismo en la Costa Tropical</h3>
+                        <p class="text-gray-600 text-sm">Los agricultores esperan una temporada de precios estables y alta demanda europea.</p>
+                    </div>
+                </div>
+                <!-- Noticia 2 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-1 transition-transform duration-300">
+                    <img class="h-48 w-full object-cover" src="https://placehold.co/600x400/e74c3c/ffffff?text=Cultura" alt="[Imagen del Teatro Calderón]">
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-red-600">CULTURA</span>
+                        <h3 class="font-bold text-xl my-2">El Teatro Calderón presenta su programación de otoño con grandes nombres de la escena nacional</h3>
+                        <p class="text-gray-600 text-sm">Obras de teatro, conciertos y espectáculos de danza llenarán el escenario motrileño.</p>
+                    </div>
+                </div>
+                <!-- Noticia 3 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-1 transition-transform duration-300">
+                    <img class="h-48 w-full object-cover" src="https://placehold.co/600x400/f39c12/ffffff?text=Deportes" alt="[Imagen del estadio Escribano Castilla]">
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-yellow-600">DEPORTES</span>
+                        <h3 class="font-bold text-xl my-2">El CF Motril se refuerza para luchar por el ascenso en una temporada ilusionante</h3>
+                        <p class="text-gray-600 text-sm">El equipo blanquiazul ha incorporado a tres nuevos jugadores para la delantera.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reportajes -->
+        <section>
+            <h2 class="text-2xl font-bold mb-6 border-l-4 border-blue-600 pl-4">Reportajes en Profundidad</h2>
+            <div class="space-y-6">
+                <!-- Reportaje 1 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden md:flex">
+                    <div class="md:w-1/3">
+                        <img class="h-full w-full object-cover" src="https://placehold.co/600x400/9b59b6/ffffff?text=Reportaje" alt="[Imagen de la producción de caña de azúcar]">
+                    </div>
+                    <div class="p-6 md:w-2/3">
+                        <h3 class="font-bold text-2xl mb-2">La huella de la caña de azúcar: Un viaje por la historia industrial de Motril</h3>
+                        <p class="text-gray-600 leading-relaxed">Desde los ingenios del siglo XVI hasta el cierre de la última fábrica, exploramos el legado de un cultivo que definió la economía y el paisaje de la comarca durante siglos. Un reportaje con testimonios de antiguos trabajadores y expertos.</p>
+                        <a href="#" class="text-blue-600 font-semibold hover:underline mt-4 inline-block">Ver reportaje completo &rarr;</a>
+                    </div>
+                </div>
+                 <!-- Reportaje 2 -->
+                 <div class="bg-white rounded-lg shadow-lg overflow-hidden md:flex">
+                    <div class="md:w-1/3">
+                        <img class="h-full w-full object-cover" src="https://placehold.co/600x400/1abc9c/ffffff?text=Turismo" alt="[Imagen de una playa de Motril]">
+                    </div>
+                    <div class="p-6 md:w-2/3">
+                        <h3 class="font-bold text-2xl mb-2">Más allá del sol y playa: El potencial del turismo rural y de aventura en Motril</h3>
+                        <p class="text-gray-600 leading-relaxed">Analizamos las rutas de senderismo, los deportes acuáticos y las iniciativas de agroturismo que buscan diversificar la oferta turística de la ciudad y atraer visitantes durante todo el año.</p>
+                        <a href="#" class="text-blue-600 font-semibold hover:underline mt-4 inline-block">Ver reportaje completo &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-12">
+        <div class="container mx-auto px-6 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">MOTRIL AL DÍA</h3>
+                    <p class="text-gray-400">El portal de noticias de referencia para Motril y la Costa Tropical. Información veraz y cercana.</p>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-4">Secciones</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Noticias Locales</a></li>
+                        <li><a href="#" class="hover:text-white">Deportes</a></li>
+                        <li><a href="#" class="hover:text-white">Cultura y Ocio</a></li>
+                        <li><a href="#" class="hover:text-white">Opinión</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-4">Contacto</h3>
+                    <p class="text-gray-400">Plaza de la Aurora, 1</p>
+                    <p class="text-gray-400">18600 Motril, Granada</p>
+                    <p class="text-gray-400 mt-2">redaccion@motrilaldia.es</p>
+                </div>
+            </div>
+            <div class="mt-8 pt-6 border-t border-gray-700 text-center text-gray-500 text-sm">
+                <p>&copy; 2025 Motril al Día. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
