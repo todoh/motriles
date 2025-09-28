@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "categoria": "ECONOMÍA",
+    "titulo": "El Puerto de Motril cierra el trimestre con un récord en el tráfico de mercancías",
+    "resumen": "La actividad portuaria se dispara gracias a la exportación de productos hortofrutícolas y la importación de graneles, consolidando su posición estratégica.",
+    "imagen": "https://placehold.co/800x600/3498db/ffffff?text=Puerto+de+Motril",
+    "fecha": "2025-09-27",
+    "autor": "Redacción",
+    "contenido": "<p><strong>La Autoridad Portuaria de Motril ha presentado hoy los datos correspondientes al último trimestre, revelando cifras históricas que consolidan a la dársena granadina como un punto neurálgico en el comercio del Mediterráneo.</strong> La actividad portuaria se ha disparado gracias a la exportación de productos hortofrutícolas y la importación de graneles.</p><p>El presidente de la Autoridad Portuaria, José García Fuentes, ha calificado los resultados de 'excepcionales' y ha destacado el esfuerzo de toda la comunidad portuaria. 'Estos números no son fruto de la casualidad, sino del trabajo coordinado de estibadores, consignatarios, transportistas y personal del puerto', afirmó en la rueda de prensa.</p><h2>Claves del Crecimiento</h2><p>El principal motor de este crecimiento ha sido el sector hortofrutícola. Las exportaciones de pepino, tomate y aguacate a mercados europeos han aumentado un 25% respecto al mismo periodo del año anterior. Además, la importación de biomasa y pasta de papel para las fábricas de la zona ha mantenido un ritmo constante, contribuyendo significativamente al volumen total.</p>"
+  },
+  {
+    "id": 2,
+    "categoria": "AGRICULTURA",
+    "titulo": "La campaña del pepino holandés arranca con optimismo en la Costa Tropical",
+    "resumen": "Los agricultores esperan una temporada de precios estables y alta demanda europea.",
+    "imagen": "https://placehold.co/600x400/2ecc71/ffffff?text=Agricultura",
+    "fecha": "2025-09-26",
+    "autor": "Ana López",
+    "contenido": "<p><strong>Los agricultores de la Costa Tropical han comenzado la siembra de pepino tipo holandés con perspectivas muy positivas.</strong> Las condiciones meteorológicas favorables y la previsión de una fuerte demanda en los mercados del centro y norte de Europa invitan al optimismo en el sector.</p><p>Las principales cooperativas de la zona, como La Palma y El Grupo, esperan un ligero aumento en la superficie cultivada este año, consolidando al pepino como uno de los productos estrella de la comarca. La calidad del producto local es un factor diferenciador clave que los mercados internacionales valoran cada vez más.</p><h2>Innovación y Sostenibilidad</h2><p>Este año, muchas explotaciones han implementado nuevas técnicas de control biológico de plagas, reduciendo el uso de pesticidas y avanzando hacia una agricultura más sostenible. Estas prácticas no solo son beneficiosas para el medio ambiente, sino que también responden a las exigencias de los consumidores europeos, que buscan productos más saludables y ecológicos.</p>"
+  },
+  {
+    "id": 3,
+    "categoria": "CULTURA",
+    "titulo": "El Teatro Calderón presenta su programación de otoño con grandes nombres",
+    "resumen": "Obras de teatro, conciertos y espectáculos de danza llenarán el escenario motrileño.",
+    "imagen": "https://placehold.co/600x400/e74c3c/ffffff?text=Cultura",
+    "fecha": "2025-09-25",
+    "autor": "Carlos Ruiz",
+    "contenido": "<p><strong>El telón del Teatro Calderón de la Barca se levantará este otoño para acoger una de las programaciones más ambiciosas de los últimos años.</strong> Obras de teatro, conciertos y espectáculos de danza llenarán el escenario motrileño, con figuras de renombre como Rafael Álvarez 'El Brujo' y la compañía de danza de Sara Baras.</p><p>La concejala de Cultura, Elena Valle, ha destacado que se ha buscado 'una programación variada y de alta calidad, con propuestas para todos los públicos'.</p>"
+  },
+  {
+    "id": 4,
+    "categoria": "DEPORTES",
+    "titulo": "El CF Motril se refuerza para luchar por el ascenso en una temporada ilusionante",
+    "resumen": "El equipo blanquiazul ha incorporado a tres nuevos jugadores para la delantera.",
+    "imagen": "https://placehold.co/600x400/f39c12/ffffff?text=Deportes",
+    "fecha": "2025-09-24",
+    "autor": "Javier Martín",
+    "contenido": "<p><strong>La afición del CF Motril tiene motivos para soñar. El club ha cerrado el mercado de fichajes con la incorporación de tres nuevos jugadores que vienen a apuntalar la delantera, la línea más necesitada del equipo.</strong> Con estos refuerzos, el objetivo del ascenso a Segunda RFEF parece más cercano que nunca.</p><h2>Una pretemporada prometedora</h2><p>El equipo dirigido por Borja Bardera ha completado una pretemporada impecable, con victorias en todos sus amistosos. El debut liguero será el próximo domingo en el Escribano Castilla frente al Torremolinos, un rival directo en la lucha por los puestos de playoff.</p>"
+  },
+  {
+    "id": 5,
+    "categoria": "REPORTAJE",
+    "titulo": "La huella de la caña de azúcar: Un viaje por la historia industrial de Motril",
+    "resumen": "Exploramos el legado de un cultivo que definió la economía y el paisaje de la comarca durante siglos.",
+    "imagen": "https://placehold.co/600x400/9b59b6/ffffff?text=Reportaje",
+    "fecha": "2025-09-22",
+    "autor": "Manuel Galiana",
+    "contenido": "<p><strong>El paisaje de la vega de Motril no se entiende sin la caña de azúcar. Durante más de cinco siglos, este cultivo modeló no solo la tierra, sino también la economía, la sociedad y la identidad de toda una comarca.</strong> Este reportaje recorre el ascenso y caída de una industria que dejó un legado imborrable, visible hoy en las chimeneas que aún se alzan como centinelas del pasado.</p><h2>Del Trapiche a la Fábrica de Vapor</h2><p>El Museo Preindustrial de la Caña de Azúcar, ubicado en la Fábrica del Pilar, es el punto de partida perfecto para entender la evolución tecnológica. Allí se conservan los trapiches originales movidos por fuerza animal, un testimonio de los inicios de esta agroindustria.</p>"
+  },
+  {
+    "id": 6,
+    "categoria": "REPORTAJE",
+    "titulo": "Más allá del sol y playa: El potencial del turismo rural y de aventura",
+    "resumen": "Analizamos las rutas de senderismo, los deportes acuáticos y las iniciativas de agroturismo que buscan diversificar la oferta turística.",
+    "imagen": "https://placehold.co/600x400/1abc9c/ffffff?text=Turismo",
+    "fecha": "2025-09-20",
+    "autor": "Lucía Fernández",
+    "contenido": "<p><strong>Motril es conocido por sus playas y su clima subtropical, pero la ciudad esconde un enorme potencial para un tipo de turismo que busca algo más que una toalla sobre la arena.</strong> El entorno natural que rodea el municipio, a caballo entre el mar y las estribaciones de la sierra, ofrece un escenario ideal para el turismo rural, el senderismo y los deportes de aventura.</p><h2>Rutas con Sabor a Subtropical</h2><p>Una de las propuestas más interesantes es el agroturismo. Varias fincas de la zona han abierto sus puertas para que los visitantes puedan conocer de primera mano el cultivo de frutas subtropicales como el mango, el aguacate o la chirimoya.</p>"
+  }
+]
