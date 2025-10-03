@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Tiempo en Motril - Motril al Día</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div id="header-container"></div>
+
+    <main class="container mx-auto px-6 py-8">
+        <div id="weather-content" class="max-w-4xl mx-auto">
+            
+            <div id="loading-weather" class="text-center py-20">
+                <p class="text-xl text-gray-600">Cargando datos del tiempo...</p>
+            </div>
+
+            <div id="weather-data" class="hidden space-y-12">
+
+                <section id="current-weather" class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                    </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold mb-4">Próximas horas</h2>
+                    <div id="hourly-forecast" class="flex space-x-4 overflow-x-auto pb-4 hourly-scroll-container">
+                        </div>
+                </section>
+                
+                <section>
+                    <h2 class="text-2xl font-bold mb-4">Pronóstico 7 días</h2>
+                    <div id="daily-forecast" class="bg-white rounded-xl shadow-lg p-4 md:p-6 space-y-4">
+                        </div>
+                </section>
+                
+                <section>
+                     <h2 class="text-2xl font-bold mb-4">Tiempo en la comarca</h2>
+                     <div id="comarca-weather" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        </div>
+                </section>
+            </div>
+
+             <div id="error-message" class="hidden text-center bg-red-100 text-red-700 p-6 rounded-lg">
+                <h2 class="font-bold text-lg">¡Vaya! No se pudo cargar la información del tiempo.</h2>
+                <p>Por favor, inténtalo de nuevo más tarde.</p>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white mt-12">
+        <div class="container mx-auto px-6 py-8 text-center">           
+             <p>&copy;   2025 Motril al Día. Todos los derechos reservados. Nuestros contenidos son procesador por Inteligencias Artificiales. @nilesilog www.silenos.es</p>
+</div>
+    </footer>
+ 
+    <script type="module" src="tiempo.js"></script>
+</body>
+</html>

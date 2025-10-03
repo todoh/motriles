@@ -3,239 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noticias de Motril</title> <!-- El título se actualizará con JS -->
+    <title>Noticias de Motril</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        .prose h2 { font-size: 1.5rem; font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; }
-        .prose p { margin-bottom: 1.25rem; }
-        /* Estilos para el mensaje de "Enlace copiado" */
-        #copy-feedback {
-            transition: opacity 0.5s ease-in-out;
-        }
-    </style> <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7136138379132657"
-     crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-50 text-gray-800">
+     <div id="header-container"></div>
 
-    <!-- Header y Navegación -->
-    <header class="bg-white shadow-md sticky top-0 z-50">
-        <!-- Barra de navegación principal -->
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-blue-600 flex-shrink-0">MOTRIL AL DÍA</a>
-            
-            <!-- Center: Search Bar (Visible en Desktop) -->
-            <div class="hidden md:flex flex-grow justify-center px-10">
-                <div class="relative w-full max-w-md">
-                    <form action="index.html" method="get">
-                        <input type="text" name="busqueda" class="w-full bg-gray-100 border border-transparent rounded-full py-2 pl-4 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Buscar noticias...">
-                        <button type="submit" class="absolute inset-y-0 right-0 flex items-center pr-3">
-                             <svg class="h-5 w-5 text-gray-400 hover:text-gray-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-                            </svg>
-                        </button>
-                    </form>
-                </div>
-            </div>
 
-            <!-- Links de Navegación (Visible en Desktop) -->
-            <div class="hidden md:flex space-x-6 items-center flex-shrink-0">
-                <a href="index.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Inicio</a>
-                <a href="index.html?categoria=noticias" class="text-gray-600 hover:text-blue-600 transition duration-300">Noticias</a>
-                <a href="index.html?categoria=reportajes" class="text-gray-600 hover:text-blue-600 transition duration-300">Reportajes</a>
-                <a href="index.html?categoria=CULTURA" class="text-gray-600 hover:text-blue-600 transition duration-300">Cultura</a>
-                <a href="index.html?categoria=GASTRONOMIA" class="text-gray-600 hover:text-blue-600 transition duration-300">Gastronomía</a>
-                <a href="index.html?categoria=ENTREVISTA" class="text-gray-600 hover:text-blue-600 transition duration-300">Entrevistas</a>
-                <a href="index.html?categoria=DEPORTE" class="text-gray-600 hover:text-blue-600 transition duration-300">Deporte</a>
-                <a href="index.html?categoria=HISTORIA" class="text-gray-600 hover:text-blue-600 transition duration-300">Historia</a>
-            </div>
-            
-            <!-- Botón del Menú Móvil (Hamburguesa) -->
-            <button id="mobile-menu-button" class="md:hidden flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
-            </button>
-        </nav>
-        
-        <!-- Menú Desplegable (Móvil) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white px-6 pb-4 shadow-md">
-            <!-- Buscador Móvil -->
-            <form action="index.html" method="get" class="relative mb-4">
-                <input type="text" name="busqueda" class="w-full bg-gray-100 border border-transparent rounded-full py-2 pl-4 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Buscar noticias...">
-                <button type="submit" class="absolute inset-y-0 right-0 flex items-center pr-3">
-                    <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" /></svg>
-                </button>
-            </form>
-            <!-- Enlaces Móvil -->
-            <div class="flex flex-col space-y-3">
-                <a href="index.html" class="text-gray-700 hover:bg-blue-50 rounded-md px-3 py-2">Inicio</a>
-                <a href="index.html?categoria=noticias" class="text-gray-700 hover:bg-blue-50 rounded-md px-3 py-2">Noticias</a>
-                <a href="index.html?categoria=reportajes" class="text-gray-700 hover:bg-blue-50 rounded-md px-3 py-2">Reportajes</a>
-                <a href="index.html?categoria=CULTURA" class="text-gray-700 hover:bg-blue-50 rounded-md px-3 py-2">Cultura</a>
-                <a href="index.html?categoria=GASTRONOMIA" class="text-gray-700 hover:bg-blue-50 rounded-md px-3 py-2">Gastronomía</a>
-                <a href="index.html?categoria=ENTREVISTA" class="text-gray-700 hover:bg-blue-50 rounded-md px-3 py-2">Entrevistas</a>
-                <a href="index.html?categoria=DEPORTE" class="text-gray-700 hover:bg-blue-50 rounded-md px-3 py-2">Deporte</a>
-                <a href="index.html?categoria=HISTORIA" class="text-gray-700 hover:bg-blue-50 rounded-md px-3 py-2">Historia</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Contenido del Artículo (se cargará aquí) -->
     <main class="container mx-auto px-6 py-8">
         <article id="article-content" class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6 md:p-10 relative">
             <p>Cargando noticia...</p>
         </article>
     </main>
     
-    <!-- Mensaje feedback "Enlace Copiado" -->
     <div id="copy-feedback" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-4 py-2 rounded-lg shadow-lg opacity-0 pointer-events-none">
         ¡Enlace copiado!
     </div>
 
-
-    <!-- Footer -->
     <footer class="bg-gray-800 text-white mt-12">
-        <div class="container mx-auto px-6 py-8 text-center">
-            <p>&copy; 2025 Motril al Día. Todos los derechos reservados.</p>
+        <div class="container mx-auto px-6 py-8 text-center">         
+              <p>&copy;   2025 Motril al Día. Todos los derechos reservados. Nuestros contenidos son procesador por Inteligencias Artificiales. @nilesilog www.silenos.es</p>
+
         </div>
     </footer>
-
-    <script type="module">
-        // Importar funciones de Firebase
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-        import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
-
-        // Configuración de Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyAfK_AOq-Pc2bzgXEzIEZ1ESWvnhMJUvwI",
-            authDomain: "enraya-51670.firebaseapp.com",
-            databaseURL: "https://enraya-51670-default-rtdb.europe-west1.firebasedatabase.app",
-            projectId: "enraya-51670",
-            storageBucket: "enraya-51670.firebasestorage.app",
-            messagingSenderId: "103343380727",
-            appId: "1:103343380727:web:b2fa02aee03c9506915bf2",
-            measurementId: "G-2G31LLJY1T"
-        };
-        
-        // Inicializar Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
-        const dbRef = ref(db);
-
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- CÓDIGO NUEVO PARA EL MENÚ MÓVIL ---
-            const menuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            
-            menuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-            // --- FIN DEL CÓDIGO NUEVO ---
-
-            const params = new URLSearchParams(window.location.search);
-            const noticiaId = params.get('id');
-            const articleContainer = document.getElementById('article-content');
-
-            if (!noticiaId) {
-                articleContainer.innerHTML = '<h1>Error: Noticia no especificada.</h1>';
-                return;
-            }
-
-            get(child(dbRef, `noticias/${noticiaId}`)).then((snapshot) => {
-                if (snapshot.exists()) {
-                    const noticia = snapshot.val();
-                    renderizarArticulo(noticia);
-                } else {
-                    articleContainer.innerHTML = '<h1>Error 404: Noticia no encontrada.</h1>';
-                    document.title = 'Noticia no encontrada - Motril al Día';
-                }
-            }).catch((error) => {
-                console.error('Error al cargar la noticia desde Firebase:', error);
-                articleContainer.innerHTML = '<h1>Error al cargar la noticia.</h1>';
-            });
-        });
-
-        function renderizarArticulo(noticia) {
-            document.title = `${noticia.titulo} - Motril al Día`;
-            const articleContainer = document.getElementById('article-content');
-            
-            const fechaFormateada = new Date(noticia.fecha).toLocaleDateString('es-ES', {
-                year: 'numeric', month: 'long', day: 'numeric'
-            });
-
-            articleContainer.innerHTML = `
-                <a href="index.html" class="text-blue-600 hover:underline mb-6 inline-block">&larr; Volver a la portada</a>
-                <span class="text-sm font-semibold text-blue-500 bg-blue-100 py-1 px-3 rounded-full self-start mb-2">${noticia.categoria}</span>
-                <h1 class="text-3xl md:text-4xl font-bold my-4">${noticia.titulo}</h1>
-                
-                <div class="flex flex-wrap items-center justify-between mb-6">
-                    <p class="text-gray-500">Por <span class="font-semibold">${noticia.autor}</span> | Publicado el ${fechaFormateada}</p>
-                    <button id="share-button" class="mt-4 sm:mt-0 flex items-center text-gray-600 hover:text-blue-600 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-full transition-colors duration-300">
-                        <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                           <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
-                        </svg>
-                        Compartir
-                    </button>
-                </div>
-
-                <img class="w-full h-auto rounded-lg mb-8 shadow-md" src="${noticia.imagen.replace('600x400', '1000x600').replace('800x600', '1000x600')}" alt="${noticia.titulo}">
-                <div class="prose max-w-none text-lg leading-relaxed text-gray-700">
-                    ${noticia.contenido}
-                </div>
-            `;
-
-            // Añadir funcionalidad al botón de compartir
-            const shareButton = document.getElementById('share-button');
-            const shareData = {
-                title: noticia.titulo,
-                text: noticia.resumen,
-                url: window.location.href,
-            };
-
-            shareButton.addEventListener('click', async () => {
-                if (navigator.share) {
-                    try {
-                        await navigator.share(shareData);
-                        console.log('Noticia compartida con éxito');
-                    } catch (err) {
-                        console.error('Error al compartir:', err);
-                    }
-                } else {
-                    // Fallback para escritorio
-                    copyToClipboard(window.location.href);
-                }
-            });
-        }
-        
-        function copyToClipboard(text) {
-            const textArea = document.createElement('textarea');
-            textArea.value = text;
-            textArea.style.position = 'fixed';
-            textArea.style.left = '-9999px';
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            try {
-                document.execCommand('copy');
-                showCopyFeedback();
-            } catch (err) {
-                console.error('No se pudo copiar el texto:', err);
-            }
-            document.body.removeChild(textArea);
-        }
-
-        function showCopyFeedback() {
-            const feedback = document.getElementById('copy-feedback');
-            feedback.classList.remove('opacity-0');
-            setTimeout(() => {
-                feedback.classList.add('opacity-0');
-            }, 2000);
-        }
-
-    </script>
+ 
+    <script type="module" src="articulo.js"></script>
 </body>
 </html>
-
-

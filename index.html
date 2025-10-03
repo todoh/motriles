@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+ 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Noticias de Motril - Actualidad y Reportajes</title>
@@ -9,387 +10,35 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-    </style>
+   <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-    <!-- Header y Navegación -->
-    <header class="bg-white shadow-md sticky top-0 z-50">
-        <!-- Barra de navegación principal -->
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-blue-600 flex-shrink-0">MOTRIL AL DÍA</a>
-            
-            <!-- Center: Search Bar (Visible en Desktop) -->
-            <div class="hidden md:flex flex-grow justify-center px-10">
-                <div class="relative w-full max-w-md">
-                    <input type="text" id="search-input" class="w-full bg-gray-100 border border-transparent rounded-full py-2 pl-4 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Buscar noticias...">
-                    <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                         <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                </div>
-            </div>
+       <div id="header-container"></div>
 
-            <!-- Links de Navegación (Visible en Desktop) -->
-            <div class="hidden md:flex space-x-6 items-center flex-shrink-0">
-                <a href="index.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Inicio</a>
-                <a href="#" id="nav-noticias" class="text-gray-600 hover:text-blue-600 transition duration-300">Noticias</a>
-                <a href="#" id="nav-reportajes" class="text-gray-600 hover:text-blue-600 transition duration-300">Reportajes</a>
-                <a href="#" id="nav-cultura" class="text-gray-600 hover:text-blue-600 transition duration-300">Cultura</a>
-                <a href="#" id="nav-gastronomia" class="text-gray-600 hover:text-blue-600 transition duration-300">Gastronomía</a>
-                <a href="#" id="nav-entrevistas" class="text-gray-600 hover:text-blue-600 transition duration-300">Entrevistas</a>
-                <a href="#" id="nav-deporte" class="text-gray-600 hover:text-blue-600 transition duration-300">Deporte</a>
-                <a href="#" id="nav-historia" class="text-gray-600 hover:text-blue-600 transition duration-300">Historia</a>
-            </div>
-            
-            <!-- Botón del Menú Móvil (Hamburguesa) -->
-            <button id="mobile-menu-button" class="md:hidden flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
-            </button>
-        </nav>
 
-        <!-- Menú Desplegable (Móvil) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white px-6 pb-4 shadow-md">
-            <!-- Buscador Móvil -->
-            <div class="relative mb-4">
-                <input type="text" id="mobile-search-input" class="w-full bg-gray-100 border border-transparent rounded-full py-2 pl-4 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Buscar noticias...">
-                 <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                    <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" /></svg>
-                </div>
-            </div>
-            <!-- Enlaces Móvil -->
-            <div class="flex flex-col space-y-3">
-                <a href="index.html" class="text-gray-700 hover:bg-blue-50 rounded-md px-3 py-2">Inicio</a>
-                <a href="#" id="mobile-nav-noticias" class="text-gray-700 hover:bg-blue-50 rounded-md px-3 py-2">Noticias</a>
-                <a href="#" id="mobile-nav-reportajes" class="text-gray-700 hover:bg-blue-50 rounded-md px-3 py-2">Reportajes</a>
-                <a href="#" id="mobile-nav-cultura" class="text-gray-700 hover:bg-blue-50 rounded-md px-3 py-2">Cultura</a>
-                <a href="#" id="mobile-nav-gastronomia" class="text-gray-700 hover:bg-blue-50 rounded-md px-3 py-2">Gastronomía</a>
-                <a href="#" id="mobile-nav-entrevistas" class="text-gray-700 hover:bg-blue-50 rounded-md px-3 py-2">Entrevistas</a>
-                <a href="#" id="mobile-nav-deporte" class="text-gray-700 hover:bg-blue-50 rounded-md px-3 py-2">Deporte</a>
-                <a href="#" id="mobile-nav-historia" class="text-gray-700 hover:bg-blue-50 rounded-md px-3 py-2">Historia</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Contenido Principal -->
     <main class="container mx-auto px-6 py-8">
-        
-        <div id="loading-message" class="text-center py-10">
-            <p class="text-lg text-gray-600">Cargando noticias desde la base de datos...</p>
-        </div>
-
-        <!-- Contenedor para la vista de INICIO -->
+        <div id="loading-message" class="text-center py-10"><p class="text-lg text-gray-600">Cargando noticias...</p></div>
         <div id="inicio-content" class="hidden">
-            <!-- Noticia Destacada (se cargará aquí) -->
             <section id="noticia-destacada" class="mb-12"></section>
-
-            <!-- Últimas Noticias (se cargarán aquí) -->
             <section id="ultimas-noticias-seccion" class="mb-12">
                 <h2 class="text-2xl font-bold mb-6 border-l-4 border-blue-600 pl-4">Últimas Noticias</h2>
-                <div id="ultimas-noticias-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Las noticias se insertarán aquí con JS -->
-                </div>
+                <div id="ultimas-noticias-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
             </section>
-
-            <!-- Reportajes (se cargarán aquí) -->
             <section id="reportajes-seccion">
                 <h2 class="text-2xl font-bold mb-6 border-l-4 border-blue-600 pl-4">Reportajes en Profundidad</h2>
-                <div id="reportajes-lista" class="space-y-6">
-                    <!-- Los reportajes se insertarán aquí con JS -->
-                </div>
+                <div id="reportajes-lista" class="space-y-6"></div>
             </section>
         </div>
-
-        <!-- Contenedor para la vista de CATEGORÍAS Y BÚSQUEDA -->
-        <div id="categoria-content" class="hidden">
-            <!-- El contenido de la categoría o búsqueda se insertará aquí -->
-        </div>
-
+        <div id="categoria-content" class="hidden"></div>
     </main>
 
-    <!-- Footer -->
     <footer class="bg-gray-800 text-white mt-12">
         <div class="container mx-auto px-6 py-8 text-center">
-            <p>&copy; 2025 Motril al Día. Todos los derechos reservados. Nuestros contenidos son procesador por Inteligencias Artificiales. @nilesilog www.silenos.es</p>
+            <p>&copy;   2025 Motril al Día. Todos los derechos reservados. Nuestros contenidos son procesador por Inteligencias Artificiales. @nilesilog www.silenos.es</p>
         </div>
     </footer>
-
-    <script type="module">
-        // Importar funciones de Firebase
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
-
-        // Configuración de Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyAfK_AOq-Pc2bzgXEzIEZ1ESWvnhMJUvwI",
-            authDomain: "enraya-51670.firebaseapp.com",
-            databaseURL: "https://enraya-51670-default-rtdb.europe-west1.firebasedatabase.app",
-            projectId: "enraya-51670",
-            storageBucket: "enraya-51670.firebasestorage.app",
-            messagingSenderId: "103343380727",
-            appId: "1:103343380727:web:b2fa02aee03c9506915bf2",
-            measurementId: "G-2G31LLJY1T"
-        };
-
-        // Inicializar Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
-        const newsRef = ref(db, 'noticias');
-        
-        let todasLasNoticias = []; // Variable global para guardar los datos
-
-        document.addEventListener('DOMContentLoaded', () => {
-
-            // --- CÓDIGO NUEVO PARA EL MENÚ MÓVIL ---
-            const menuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            
-            menuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-            
-            // Sincronizar búsqueda móvil con la principal
-            const mobileSearchInput = document.getElementById('mobile-search-input');
-            mobileSearchInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    const searchTerm = mobileSearchInput.value.trim();
-                    if (searchTerm) {
-                        mobileMenu.classList.add('hidden'); // Opcional: cierra el menú al buscar
-                        renderizarBusqueda(searchTerm);
-                    }
-                }
-            });
-
-            // Replicar listeners de navegación para los enlaces móviles
-            document.getElementById('mobile-nav-noticias').addEventListener('click', (e) => { e.preventDefault(); mobileMenu.classList.add('hidden'); renderizarCategoria('noticias'); });
-            document.getElementById('mobile-nav-reportajes').addEventListener('click', (e) => { e.preventDefault(); mobileMenu.classList.add('hidden'); renderizarCategoria('reportajes'); });
-            document.getElementById('mobile-nav-cultura').addEventListener('click', (e) => { e.preventDefault(); mobileMenu.classList.add('hidden'); renderizarCategoria('CULTURA'); });
-            document.getElementById('mobile-nav-gastronomia').addEventListener('click', (e) => { e.preventDefault(); mobileMenu.classList.add('hidden'); renderizarCategoria('GASTRONOMIA'); });
-            document.getElementById('mobile-nav-entrevistas').addEventListener('click', (e) => { e.preventDefault(); mobileMenu.classList.add('hidden'); renderizarCategoria('ENTREVISTA'); });
-            document.getElementById('mobile-nav-deporte').addEventListener('click', (e) => { e.preventDefault(); mobileMenu.classList.add('hidden'); renderizarCategoria('DEPORTE'); });
-            document.getElementById('mobile-nav-historia').addEventListener('click', (e) => { e.preventDefault(); mobileMenu.classList.add('hidden'); renderizarCategoria('HISTORIA'); });
-            // --- FIN DEL CÓDIGO NUEVO ---
-
-            // Listener de Firebase para obtener datos en tiempo real
-            onValue(newsRef, (snapshot) => {
-                const data = snapshot.val();
-                document.getElementById('loading-message').classList.add('hidden');
-                
-                if (data) {
-                    const dataArray = Object.values(data);
-                    const noticiasPublicadas = dataArray.filter(n => n.estado === 'publicado');
-                    todasLasNoticias = noticiasPublicadas.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
-                    
-                    const params = new URLSearchParams(window.location.search);
-                    const categoriaParam = params.get('categoria');
-                    const busquedaParam = params.get('busqueda');
-
-                    if (categoriaParam) {
-                        renderizarCategoria(categoriaParam);
-                    } else if (busquedaParam) {
-                        document.getElementById('search-input').value = busquedaParam;
-                        renderizarBusqueda(busquedaParam);
-                    } else {
-                        renderizarInicio();
-                    }
-                } else {
-                    document.querySelector('main').innerHTML = `<p class="text-center text-red-500">No se encontraron noticias. La base de datos puede estar vacía.</p>`;
-                }
-            }, (error) => {
-                 console.error('Error al cargar las noticias desde Firebase:', error);
-                 document.querySelector('main').innerHTML = `<p class="text-center text-red-500">No se pudieron cargar las noticias. Inténtelo de nuevo más tarde.</p>`;
-            });
-            
-            // Listeners para los botones de navegación (Desktop)
-            document.getElementById('nav-noticias').addEventListener('click', (e) => { e.preventDefault(); renderizarCategoria('noticias'); });
-            document.getElementById('nav-reportajes').addEventListener('click', (e) => { e.preventDefault(); renderizarCategoria('reportajes'); });
-            document.getElementById('nav-cultura').addEventListener('click', (e) => { e.preventDefault(); renderizarCategoria('CULTURA'); });
-            document.getElementById('nav-gastronomia').addEventListener('click', (e) => { e.preventDefault(); renderizarCategoria('GASTRONOMIA'); });
-            document.getElementById('nav-entrevistas').addEventListener('click', (e) => { e.preventDefault(); renderizarCategoria('ENTREVISTA'); });
-            document.getElementById('nav-deporte').addEventListener('click', (e) => { e.preventDefault(); renderizarCategoria('DEPORTE'); });
-            document.getElementById('nav-historia').addEventListener('click', (e) => { e.preventDefault(); renderizarCategoria('HISTORIA'); });
-            
-            // Listener for search (Desktop)
-            const searchInput = document.getElementById('search-input');
-            searchInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    const searchTerm = searchInput.value.trim();
-                    if (searchTerm) {
-                        renderizarBusqueda(searchTerm);
-                    }
-                }
-            });
-        });
-
-        function renderizarInicio() {
-            document.getElementById('inicio-content').classList.remove('hidden');
-            document.getElementById('categoria-content').classList.add('hidden');
-            
-            const noticiasParaInicio = [...todasLasNoticias];
-            
-            const noticiaDestacada = noticiasParaInicio.shift(); 
-            const reportajes = noticiasParaInicio.filter(n => n.categoria === 'REPORTAJE').slice(0, 2);
-            const ultimasNoticias = noticiasParaInicio.filter(n => n.categoria !== 'REPORTAJE').slice(0, 6);
-
-            renderizarDestacada(noticiaDestacada);
-            renderizarUltimasNoticias(ultimasNoticias);
-            renderizarReportajes(reportajes);
-        }
-        
-        function renderizarCategoria(tipo) {
-            document.getElementById('inicio-content').classList.add('hidden');
-            const container = document.getElementById('categoria-content');
-            container.classList.remove('hidden');
-
-            let titulo = '';
-            let articulosFiltrados = [];
-            const tipoLower = tipo.toLowerCase();
-
-            if (tipoLower === 'noticias') {
-                titulo = 'Todas las Noticias';
-                articulosFiltrados = todasLasNoticias.filter(n => n.categoria !== 'REPORTAJE' && n.categoria !== 'ENTREVISTA');
-            } else if (tipoLower === 'reportajes') {
-                titulo = 'Todos los Reportajes';
-                articulosFiltrados = todasLasNoticias.filter(n => n.categoria === 'REPORTAJE');
-            } else {
-                titulo = tipo.charAt(0).toUpperCase() + tipo.slice(1).toLowerCase();
-                articulosFiltrados = todasLasNoticias.filter(n => n.categoria.toUpperCase() === tipo.toUpperCase());
-            }
-            
-            const articulosHtml = articulosFiltrados.length > 0
-                ? articulosFiltrados.map(articulo => `
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden md:flex">
-                        <div class="md:w-1/3">
-                            <a href="articulo.html?id=${articulo.id}">
-                               <img class="h-full w-full object-cover" src="${articulo.imagen}" alt="${articulo.titulo}">
-                            </a>
-                        </div>
-                        <div class="p-6 md:w-2/3 flex flex-col">
-                            <span class="text-xs font-semibold text-gray-500">${articulo.categoria}</span>
-                            <h3 class="font-bold text-2xl mt-1 mb-2 flex-grow">
-                                 <a href="articulo.html?id=${articulo.id}" class="hover:text-blue-600">${articulo.titulo}</a>
-                            </h3>
-                            <p class="text-gray-600 leading-relaxed mb-4">${articulo.resumen}</p>
-                            <a href="articulo.html?id=${articulo.id}" class="text-blue-600 font-semibold hover:underline mt-auto self-start">Leer más &rarr;</a>
-                        </div>
-                    </div>
-                `).join('')
-                : `<p class="text-center text-gray-600 py-10">No hay artículos en la categoría "<strong>${titulo}</strong>".</p>`;
-
-
-            container.innerHTML = `
-                <section>
-                    <h2 class="text-2xl font-bold mb-6 border-l-4 border-blue-600 pl-4">${titulo}</h2>
-                    <div class="space-y-6">
-                        ${articulosHtml}
-                    </div>
-                </section>
-            `;
-        }
-
-        function renderizarBusqueda(termino) {
-            document.getElementById('inicio-content').classList.add('hidden');
-            const container = document.getElementById('categoria-content');
-            container.classList.remove('hidden');
-
-            const terminoLower = termino.toLowerCase();
-            const articulosFiltrados = todasLasNoticias.filter(n => 
-                n.titulo.toLowerCase().includes(terminoLower) || 
-                n.resumen.toLowerCase().includes(terminoLower)
-            );
-            
-            let articulosHtml;
-            if (articulosFiltrados.length > 0) {
-                 articulosHtml = articulosFiltrados.map(articulo => `
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden md:flex">
-                    <div class="md:w-1/3">
-                        <a href="articulo.html?id=${articulo.id}">
-                           <img class="h-full w-full object-cover" src="${articulo.imagen}" alt="${articulo.titulo}">
-                        </a>
-                    </div>
-                    <div class="p-6 md:w-2/3 flex flex-col">
-                        <span class="text-xs font-semibold text-gray-500">${articulo.categoria}</span>
-                        <h3 class="font-bold text-2xl mt-1 mb-2 flex-grow">
-                             <a href="articulo.html?id=${articulo.id}" class="hover:text-blue-600">${articulo.titulo}</a>
-                        </h3>
-                        <p class="text-gray-600 leading-relaxed mb-4">${articulo.resumen}</p>
-                        <a href="articulo.html?id=${articulo.id}" class="text-blue-600 font-semibold hover:underline mt-auto self-start">Leer más &rarr;</a>
-                    </div>
-                </div>
-                `).join('');
-            } else {
-                articulosHtml = `<p class="text-center text-gray-600 py-10">No se encontraron resultados para "<strong>${termino}</strong>".</p>`;
-            }
-
-            container.innerHTML = `
-                <section>
-                    <h2 class="text-2xl font-bold mb-6 border-l-4 border-blue-600 pl-4">Resultados de búsqueda: "${termino}"</h2>
-                    <div class="space-y-6">
-                        ${articulosHtml}
-                    </div>
-                </section>
-            `;
-        }
-
-        function renderizarDestacada(noticia) {
-            const container = document.getElementById('noticia-destacada');
-            if (!noticia) return;
-            container.innerHTML = `
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden md:flex">
-                    <div class="md:w-1/2">
-<img class="h-64 w-full object-cover md:h-96" src="${noticia.imagen}" alt="${noticia.titulo}">                    </div>
-                    <div class="p-6 md:w-1/2 flex flex-col justify-center">
-                        <span class="text-sm font-semibold text-blue-500 bg-blue-100 py-1 px-3 rounded-full self-start mb-2">${noticia.categoria}</span>
-                        <h1 class="text-3xl font-bold mb-4">${noticia.titulo}</h1>
-                        <p class="text-gray-600 leading-relaxed mb-4">${noticia.resumen}</p>
-                        <a href="articulo.html?id=${noticia.id}" class="text-blue-600 font-semibold hover:underline">Leer más &rarr;</a>
-                    </div>
-                </div>`;
-        }
-
-        function renderizarUltimasNoticias(noticias) {
-            const grid = document.getElementById('ultimas-noticias-grid');
-            grid.innerHTML = noticias.map(noticia => `
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-1 transition-transform duration-300">
-                    <a href="articulo.html?id=${noticia.id}">
-                        <img class="h-48 w-full object-cover" src="${noticia.imagen}" alt="${noticia.titulo}">
-                    </a>
-                    <div class="p-6">
-                        <span class="text-xs font-semibold text-gray-500">${noticia.categoria}</span>
-                        <h3 class="font-bold text-xl my-2">
-                            <a href="articulo.html?id=${noticia.id}" class="hover:text-blue-600">${noticia.titulo}</a>
-                        </h3>
-                        <p class="text-gray-600 text-sm">${noticia.resumen}</p>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function renderizarReportajes(reportajes) {
-            const lista = document.getElementById('reportajes-lista');
-            lista.innerHTML = reportajes.map(reportaje => `
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden md:flex">
-                    <div class="md:w-1/3">
-                        <a href="articulo.html?id=${reportaje.id}">
-                           <img class="h-full w-full object-cover" src="${reportaje.imagen}" alt="${reportaje.titulo}">
-                        </a>
-                    </div>
-                    <div class="p-6 md:w-2/3">
-                        <h3 class="font-bold text-2xl mb-2">
-                             <a href="articulo.html?id=${reportaje.id}" class="hover:text-blue-600">${reportaje.titulo}</a>
-                        </h3>
-                        <p class="text-gray-600 leading-relaxed">${reportaje.resumen}</p>
-                        <a href="articulo.html?id=${reportaje.id}" class="text-blue-600 font-semibold hover:underline mt-4 inline-block">Ver reportaje completo &rarr;</a>
-                    </div>
-                </div>
-            `).join('');
-        }
-    </script>
+ 
+    <script type="module" src="main.js"></script>
 </body>
 </html>
-
