@@ -27,18 +27,29 @@ const newsRef = ref(db, 'noticias');
 
 let todasLasNoticias = [];
 
+// ✅ PASO 1: Creamos una función "router" que decide qué renderizar.
+function router() {
+    const params = new URLSearchParams(window.location.search);
+    const categoriaParam = params.get('categoria');
+    const busquedaParam = params.get('busqueda');
+
+    if (categoriaParam) {
+        renderizarCategoria(categoriaParam);
+    } else if (busquedaParam) {
+        const searchInput = document.getElementById('search-input');
+        if (searchInput) searchInput.value = busquedaParam;
+        renderizarBusqueda(busquedaParam);
+    } else {
+        renderizarInicio();
+    }
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
     // 1. Carga el header y espera a que termine
     await loadHeader();
-
-    // ✅ 2. Inicializa la lógica de la cabecera
     initializeHeader();
 
-    // --- CÓDIGO DE NAVEGACIÓN ELIMINADO ---
-    // Ya no necesitas todos los addEventListener que estaban aquí,
-    // porque ahora los gestiona initializeHeader().
-
-    // --- LISTENER DE FIREBASE (sin cambios) ---
+    // --- LISTENER DE FIREBASE ---
     onValue(newsRef, (snapshot) => {
         document.getElementById('loading-message').classList.add('hidden');
         const data = snapshot.val();
@@ -47,19 +58,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                 .filter(n => n.estado === 'publicado')
                 .sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
             
-            const params = new URLSearchParams(window.location.search);
-            const categoriaParam = params.get('categoria');
-            const busquedaParam = params.get('busqueda');
-
-            if (categoriaParam) {
-                renderizarCategoria(categoriaParam);
-            } else if (busquedaParam) {
-                const searchInput = document.getElementById('search-input');
-                if (searchInput) searchInput.value = busquedaParam;
-                renderizarBusqueda(busquedaParam);
-            } else {
-                renderizarInicio();
-            }
+            // ✅ PASO 2: Ejecutamos el router en la carga inicial de la página.
+            router();
+            
         } else {
             document.querySelector('main').innerHTML = `<p class="text-center text-red-500">No se encontraron noticias.</p>`;
         }
@@ -67,11 +68,16 @@ document.addEventListener('DOMContentLoaded', async () => {
          console.error('Error al cargar las noticias:', error);
          document.querySelector('main').innerHTML = `<p class="text-center text-red-500">No se pudieron cargar las noticias.</p>`;
     });
+    
+    // ✅ PASO 3: Añadimos listeners para que el router se ejecute cuando la URL cambie.
+    // Escucha el "aviso" que creamos en header.js
+    window.addEventListener('locationchange', router);
+    // Escucha los botones de "atrás" y "adelante" del navegador.
+    window.addEventListener('popstate', router);
 });
 
 
-// ... (El resto de funciones: renderizarInicio, renderizarCategoria, etc., permanecen igual)
-// ...
+
 
 // ... (El resto de funciones: renderizarInicio, renderizarCategoria, etc., permanecen igual)
 function renderizarInicio() {
@@ -81,8 +87,8 @@ function renderizarInicio() {
     const noticiasParaInicio = [...todasLasNoticias];
     
     const noticiaDestacada = noticiasParaInicio.shift(); 
-    const reportajes = noticiasParaInicio.filter(n => n.categoria === 'REPORTAJE').slice(0, 2);
-    const ultimasNoticias = noticiasParaInicio.filter(n => n.categoria !== 'REPORTAJE').slice(0, 6);
+    const reportajes = noticiasParaInicio.filter(n => n.categoria === 'REPORTAJE').slice(0, 8);
+    const ultimasNoticias = noticiasParaInicio.filter(n => n.categoria !== 'REPORTAJE').slice(0, 24);
 
     renderizarDestacada(noticiaDestacada);
     renderizarUltimasNoticias(ultimasNoticias);
