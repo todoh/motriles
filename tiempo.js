@@ -1,6 +1,7 @@
 // tiempo.js
 
 import { loadHeader } from './app.js';
+import { initializeHeader } from './header.js';
 
 // --- CONFIGURACIÓN ---
 const API_KEY = '2aa2c3ddc82e560cf10c862239aadcd9'; 
@@ -22,7 +23,11 @@ const comarcaWeatherElement = document.getElementById('comarca-weather');
 
 // --- INICIALIZACIÓN ---
 document.addEventListener('DOMContentLoaded', async () => {
+    // 1. Carga el header
     await loadHeader();
+    
+    // ✅ 2. Inicializa la lógica de la cabecera
+    initializeHeader();
     
     if (API_KEY === 'TU_API_KEY_AQUI') {
         showError("Por favor, introduce una API Key válida en el archivo `tiempo.js`.");
@@ -31,6 +36,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     loadAllWeatherData();
 });
+
 
 // --- LÓGICA PRINCIPAL ---
 

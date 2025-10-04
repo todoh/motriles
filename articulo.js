@@ -1,5 +1,6 @@
 
 import { loadHeader } from './app.js';
+import { initializeHeader } from './header.js';
 
 // Importar funciones de Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
@@ -24,8 +25,12 @@ const dbRef = ref(db);
 
 document.addEventListener('DOMContentLoaded', async () => {
  
-    // 3. Espera a que el header esté cargado
+    // 1. Espera a que el header esté cargado
     await loadHeader();
+
+    // ✅ 2. Inicializa la lógica de la cabecera
+    initializeHeader();
+    
     const params = new URLSearchParams(window.location.search);
     const noticiaId = params.get('id');
     const articleContainer = document.getElementById('article-content');

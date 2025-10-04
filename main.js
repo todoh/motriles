@@ -1,107 +1,37 @@
-import { loadHeader } from './app.js';
+// main.js
 
-// Importar funciones de Firebase
+import { loadHeader } from './app.js';
+// ✅ 1. Importa la nueva función de header.js
+import { initializeHeader } from './header.js'; 
+
+// Importar funciones de Firebase (sin cambios)
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
 import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
-// Configuración de Firebase
+// Configuración de Firebase (sin cambios)
 const firebaseConfig = {
-    apiKey: "AIzaSyAfK_AOq-Pc2bzgXEzIEZ1ESWvnhMJUvwI",
-    authDomain: "enraya-51670.firebaseapp.com",
-    databaseURL: "https://enraya-51670-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "enraya-51670",
-    storageBucket: "enraya-51670.firebasestorage.app",
-    messagingSenderId: "103343380727",
-    appId: "1:103343380727:web:b2fa02aee03c9506915bf2",
-    measurementId: "G-2G31LLJY1T"
+    // ... tu configuración ...
 };
 
-// Inicializar Firebase
+// Inicializar Firebase (sin cambios)
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const newsRef = ref(db, 'noticias');
 
 let todasLasNoticias = [];
 
-// main.js
-
 document.addEventListener('DOMContentLoaded', async () => {
     // 1. Carga el header y espera a que termine
     await loadHeader();
 
-    // 2. Selecciona los elementos DESPUÉS de que el header ha cargado
-    const mobileMenu = document.getElementById('mobile-menu');
-    const searchInput = document.getElementById('search-input');
-    const mobileSearchInput = document.getElementById('mobile-search-input');
-    const navNoticias = document.getElementById('nav-noticias');
-    const navReportajes = document.getElementById('nav-reportajes');
-    const mobileNavNoticias = document.getElementById('mobile-nav-noticias');
-    const mobileNavReportajes = document.getElementById('mobile-nav-reportajes');
-    
-    // --- LISTENERS DE NAVEGACIÓN Y BÚSQUEDA (CON NULL CHECKS) ---
+    // ✅ 2. Inicializa la lógica de la cabecera
+    initializeHeader();
 
-    // Búsqueda en Móvil
-    if (mobileSearchInput && mobileMenu) { // ✅ Comprueba que ambos existen
-        mobileSearchInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                const searchTerm = mobileSearchInput.value.trim();
-                if (searchTerm) {
-                    mobileMenu.classList.add('hidden');
-                    renderizarBusqueda(searchTerm);
-                }
-            }
-        });
-    }
+    // --- CÓDIGO DE NAVEGACIÓN ELIMINADO ---
+    // Ya no necesitas todos los addEventListener que estaban aquí,
+    // porque ahora los gestiona initializeHeader().
 
-    // Búsqueda en Desktop
-    if (searchInput) { // ✅ Comprueba que existe
-        searchInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                const searchTerm = e.target.value.trim();
-                if (searchTerm) renderizarBusqueda(searchTerm);
-            }
-        });
-    }
-    
-    // Links principales (Desktop)
-    if (navNoticias) { // ✅ Comprueba que existe
-         navNoticias.addEventListener('click', (e) => { e.preventDefault(); renderizarCategoria('noticias'); });
-    }
-    if (navReportajes) { // ✅ Comprueba que existe
-        navReportajes.addEventListener('click', (e) => { e.preventDefault(); renderizarCategoria('reportajes'); });
-    }
-
-    // Links principales (Móvil)
-    if (mobileNavNoticias && mobileMenu) { // ✅ Comprueba que existen
-        mobileNavNoticias.addEventListener('click', (e) => { e.preventDefault(); mobileMenu.classList.add('hidden'); renderizarCategoria('noticias'); });
-    }
-    if (mobileNavReportajes && mobileMenu) { // ✅ Comprueba que existen
-        mobileNavReportajes.addEventListener('click', (e) => { e.preventDefault(); mobileMenu.classList.add('hidden'); renderizarCategoria('reportajes'); });
-    }
-
-    // Listener para todas las categorías del desplegable (Desktop)
-    // querySelectorAll es seguro porque devuelve una NodeList vacía si no encuentra nada, no null.
-    document.querySelectorAll('.category-link').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const categoria = e.target.getAttribute('data-category');
-            renderizarCategoria(categoria);
-        });
-    });
-
-    // Listener para todas las categorías (Móvil)
-    document.querySelectorAll('.mobile-category-link').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const categoria = e.target.getAttribute('data-category');
-            if (mobileMenu) mobileMenu.classList.add('hidden'); // Oculta el menú
-            renderizarCategoria(categoria);
-        });
-    });
-
-    // --- LISTENER DE FIREBASE ---
+    // --- LISTENER DE FIREBASE (sin cambios) ---
     onValue(newsRef, (snapshot) => {
         document.getElementById('loading-message').classList.add('hidden');
         const data = snapshot.val();
@@ -117,7 +47,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (categoriaParam) {
                 renderizarCategoria(categoriaParam);
             } else if (busquedaParam) {
-                if (searchInput) searchInput.value = busquedaParam; // También comprueba aquí
+                const searchInput = document.getElementById('search-input');
+                if (searchInput) searchInput.value = busquedaParam;
                 renderizarBusqueda(busquedaParam);
             } else {
                 renderizarInicio();
@@ -130,6 +61,10 @@ document.addEventListener('DOMContentLoaded', async () => {
          document.querySelector('main').innerHTML = `<p class="text-center text-red-500">No se pudieron cargar las noticias.</p>`;
     });
 });
+
+
+// ... (El resto de funciones: renderizarInicio, renderizarCategoria, etc., permanecen igual)
+// ...
 
 // ... (El resto de funciones: renderizarInicio, renderizarCategoria, etc., permanecen igual)
 function renderizarInicio() {
