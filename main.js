@@ -8,15 +8,22 @@ import { initializeHeader } from './header.js';
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
 import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
-// Configuración de Firebase (sin cambios)
 const firebaseConfig = {
-    // ... tu configuración ...
+    apiKey: "AIzaSyAfK_AOq-Pc2bzgXEzIEZ1ESWvnhMJUvwI",
+    authDomain: "enraya-51670.firebaseapp.com",
+    databaseURL: "https://enraya-51670-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "enraya-51670",
+    storageBucket: "enraya-51670.firebasestorage.app",
+    messagingSenderId: "103343380727",
+    appId: "1:103343380727:web:b2fa02aee03c9506915bf2",
+    measurementId: "G-2G31LLJY1T"
 };
 
 // Inicializar Firebase (sin cambios)
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const newsRef = ref(db, 'noticias');
+ 
 
 let todasLasNoticias = [];
 
